@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery Functions</title>
+	<style type="text/css">
+		span{
+			display: block;
+		}
+		div{
+			border-bottom: 1px solid black;
+			padding-bottom: 5px;
+		}
+		.hide{
+			background-color: purple; 
+		}
+		.toglr{
+			background-color: green;
+		}
+		.box{
+			border: 2px solid blue;
+			margin: 2px 0px;
+		}
+		.par_0 {
+			color: blue;
+		}
+		.par_1 {
+			background-color: pink;
+			font-size: 150%;
+		}
+		.par_2 {
+			text-align: center;
+		}
+		#roster, #num{
+			border-bottom: none;
+		}
+	</style>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//.on "click" line-through list item
+		$(document).ready(function(){
+			$('span').on("click", function() {
+				$(this).css("text-decoration", "line-through red");
+			});
+			//hide/show
+			$('#hidr').click(function(){
+				$('p.hide').hide('slow');
+			})
+			$('#showr').click(function(){
+				$('p.hide').show('fast');
+			})
+			$('#tog').click(function(){
+				$('p.toglr').toggle('slow');
+			})
+			//slideUp/down
+			$('#slidr2').click(function(){
+				$('.box').slideUp(1000);
+			})
+			$('#slidr1').click(function(){
+				$('.box').slideDown(1000);
+			})
+			$('#togslide').click(function(){
+				$('.fname').slideToggle();
+			})
+			//fade out/in
+			$('#b1').mouseover(function(){
+				$(this).fadeOut();
+			})
+			$('#b2').mouseover(function(){
+				$(this).fadeOut();
+			})
+			$('#b3').mouseover(function(){
+				$(this).fadeOut();
+			})
+			$('.restore').click(function(){
+				$('#b1,#b2,#b3').fadeIn(2000);
+			})
+			$('#classy').click(function(){
+				$('.padd').addClass(function(n){
+					return "par_" + n;
+				});
+			})
+			//add text before and after
+			$('#before').click(function(){
+				$('.quote').before('<p>100% </p>');
+			})
+			$('#after').click(function(){
+				$('.quote').after('<p>~Wayne Gretzky</p>');
+			})
+			$('#app').click(function(){
+				$('ol').append('<li>Appended Item</li>');
+			})
+			$('#chngr').click(function(){
+				$('.cj').css("color", "red").html("<span>The Paragraphs in this div have all been changed</span>");
+			})
+			//use .attr to set width and height of img
+			$('#attr').click(function(){
+				$('img').attr({width: '150', height: '100'});
+			})
+			$('#honor').click(function(){
+				alert($('#name:text').val());
+			})
+			$('#which').click(function(){
+				$('.jerk').text(function(n){
+					return "This p element has index: " + n;
+				})
+			})
+			//retreive stored value using .data
+			var player = $('#roster').data('myval');
+			$('#p1').click(function(){
+				alert(player);
+			})
+			var player_num = $('#num').data('myval');
+			$('#p2').click(function(){
+				alert(player_num);
+			})
+			
+
+			
+
+		});
+	</script>
+</head>
+<body>
+	<div id="todo">
+		<h3>Grocery List</h3>
+		<p>
+			<span>
+				<input type="checkbox" name="groceries">
+				<label>Bread</label>
+			</span>
+			<span>
+				<input type="checkbox" name="groceries">
+				<label>Milk</label>
+			</span>
+			<span>
+				<input type="checkbox" name="groceries">
+				<label>Meat</label>
+			</span>
+			<span>
+				<input type="checkbox" name="groceries">
+				<label>Beer</label>
+			</span>
+			<span>
+				<input type="checkbox" name="groceries">
+				<label>Veggies</label>
+			</span>
+			
+		</p>
+		
+		
+			
+	
+	</div>
+	<div id="hide_show">
+		<h3>Hide/Show</h3>
+		<p class="hide">Hidden Paragraph, when button in clicked paragraph is hidden</p>
+		<button id="hidr">Click me to hide paragraph</button>
+		<button id="showr">Click me to SHOW paragraph</button>
+	</div>
+	<div>
+		<h3>Toggle</h3>
+		<p class="toglr">Another paragraph that is hidden or revealed on button click</p>
+		<button id="tog">Toggle 'em</button>
+	</div>
+	<div>
+		<h3>Slide Up/Down</h3>
+		<button id="slidr1">Click to slide down input</button>
+		<button id="slidr2">Click me to slide up input</button>
+		<div class="box">Slide 'n Hide</div>
+	</div>
+	<div>
+		<h3> Slide Toggle</h3>
+		<button id="togslide">Toggle input up or down</button>
+		<input type="text" class="fname" placeholder="Your first name..." style="border: 1px solid yellow">
+	</div>
+	<div>
+		<h3>Mouse over to fade boxes</h3>
+		<button class="restore">Click to fade back in </button>
+		<div id="b1" style="width: 60px;height: 60px;background-color: green;"></div>
+		<div id="b2" style="width: 60px;height: 60px;background-color: red;"></div>
+		<div id="b3" style="width: 60px;height: 60px;background-color: blue;"></div>
+	</div>
+	<div>
+		<h3>Add a class</h3>
+		<p class="padd">This is the first paragraph</p>
+		<p class="padd">This is the second paragraph</p>
+		<p class="padd">This is the third paragraph</p>
+		<button id="classy">Click to add a class</button>
+	</div>
+	<div>
+		<h3>Before After</h3>
+		<button id="before">Click to add html before p</button>
+		<p class="quote">...of shots not taken are missed</p>
+		<button id="after">Click to add html after p</button>
+	</div>
+	<div>
+		<h3>Append</h3>
+		<ol>
+			<li>List Item 1</li>
+			<li>List Item 2</li>
+			<li>List Item 3</li>
+		</ol>
+		<button id="app">Append List Item</button>
+	</div>
+	<div>
+		<h3>Html</h3>
+		<p class="cj">This is a paragraph</p>
+		<p class="cj">THis is another paragrpah</p>
+		<p class="cj">THis is a third paragrph</p>
+		<button id="chngr">Change all p elements</button>
+	</div>
+	<div>
+		<h3>Attr</h3>
+		<img src="sloth.jpg" alt="Sloth">
+		<button id="attr">Set width and height attr</button>
+	</div>
+	<div>
+		<h3>Val</h3>
+		<input type="text" value="Enter your name" id="name" style="border: 1px solid yellow">
+		<button id="honor">Return the value of the input field</button>
+	</div>
+	<div>
+		<h3>Text</h3>
+		<p class="jerk">This is the first paragraph</p>
+		<p class="jerk">This is the second paragraph</p>
+		<p class="jerk">This is the second paragraph</p>
+		<button id="which">Return the index of each paragraph</button>
+	</div>
+	<div>
+		<h3>Data</h3>
+		<div id="roster" data-myval='Wilson'></div>
+		<div id="num" data-myval= 22></div>
+			<button id="p1">click to alert player name</button>
+			<button id="p2">click to alert player number</button>
+
+	</div>
+
+</body>
+</html>
